@@ -4,6 +4,10 @@
   "description": "A minimal hostel management system",
   "type": "module",
   "scripts": {
+    "start": "node src/server.js",
     "test": "node --test"
+  },
+  "dependencies": {
+    "pg": "^8.23.1"
   }
 }

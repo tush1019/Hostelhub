@@ -46,3 +46,34 @@ test('summary reflects occupancy and revenue', () => {
   assert.equal(summary.totalOccupants, 2);
   assert.equal(summary.monthlyRevenue, 6000);
 });
+
+test('requested room type must match an available room', () => {
+  const manager = new HostelManager();
+  manager.addRoom(new Room({ id: 'E-501', type: 'double', rentPerMonth: 5000, capacity: 2 }));
+
+  assert.throws(() => manager.checkIn({ id: 'R-401', name: 'Ari' }, 'single'), /No room available/i);
+});
+
+test('partially filled rooms still count as available', () => {
+  const manager = new HostelManager();
+  manager.addRoom(new Room({ id: 'F-601', type: 'single', rentPerMonth: 3000, capacity: 1 }));
+  manager.addRoom(new Room({ id: 'F-602', type: 'double', rentPerMonth: 4800, capacity: 2 }));
+
+  manager.checkIn({ id: 'R-501', name: 'Jiya' }, 'single');
+  manager.checkIn({ id: 'R-502', name: 'Kabir' }, 'double');
+
+  const summary = manager.getSummary();
+
+  assert.equal(summary.occupiedRooms, 2);
+  assert.equal(summary.availableRooms, 1);
+});
+
+test('duplicate resident ids are rejected', () => {
+  const manager = new HostelManager();
+  manager.addRoom(new Room({ id: 'G-701', type: 'single', rentPerMonth: 3200, capacity: 1 }));
+  manager.addRoom(new Room({ id: 'G-702', type: 'single', rentPerMonth: 3200, capacity: 1 }));
+
+  manager.checkIn({ id: 'R-601', name: 'Lena' }, 'single');
+
+  assert.throws(() => manager.checkIn({ id: 'R-601', name: 'Leena' }, 'single'), /already checked in/i);
+});

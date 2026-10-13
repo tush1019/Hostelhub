@@ -49,6 +49,10 @@ export class HostelManager {
   }
 
   addRoom(room) {
+    if (this.rooms.some((item) => item.id === room.id)) {
+      throw new Error(`Room ${room.id} already exists.`);
+    }
+
     this.rooms.push(room);
     return room;
   }
@@ -59,14 +63,14 @@ export class HostelManager {
       return candidates[0] ?? null;
     }
 
-    return (
-      candidates.find((room) => room.type === preferredType) ??
-      candidates.find((room) => room.type !== preferredType) ??
-      null
-    );
+    return candidates.find((room) => room.type === preferredType) ?? null;
   }
 
   checkIn(student, preferredType = null) {
+    if (this.residents.has(student.id)) {
+      throw new Error(`Resident ${student.id} is already checked in.`);
+    }
+
     const room = this.findAvailableRoom(preferredType);
     if (!room) {
       throw new Error('No room available for the requested type.');
@@ -112,7 +116,7 @@ export class HostelManager {
   getSummary() {
     const totalRooms = this.rooms.length;
     const occupiedRooms = this.rooms.filter((room) => room.getOccupancy() > 0).length;
-    const availableRooms = totalRooms - occupiedRooms;
+    const availableRooms = this.rooms.filter((room) => room.isAvailable()).length;
     const totalOccupants = Array.from(this.residents.values()).length;
     const monthlyRevenue = Array.from(this.residents.values()).reduce(
       (sum, resident) => sum + (resident.rentPerMonth ?? 0),

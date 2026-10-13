@@ -13,4 +13,7 @@ A minimal hostel management system for tracking rooms, residents, occupancy, and
 
 ```bash
 npm test
+npm start
 ```
+
+Then open http://localhost:3000 in your browser to use the Hostelhub dashboard.

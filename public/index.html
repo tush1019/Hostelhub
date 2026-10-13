@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostelhub</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #111827;
+        --panel-soft: #1f2937;
+        --primary: #60a5fa;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --success: #34d399;
+        --danger: #f87171;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(180deg, #020817, var(--bg));
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 980px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+      }
+
+      .panel {
+        background: rgba(17, 24, 39, 0.92);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      input, select, button {
+        border-radius: 8px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      input, select {
+        background: var(--panel-soft);
+        color: var(--text);
+      }
+
+      button {
+        background: var(--primary);
+        color: #08111d;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: #374151;
+        color: var(--text);
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .stat {
+        padding: 16px;
+        border-radius: 10px;
+        background: rgba(30, 41, 59, 0.9);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+      }
+
+      .stat span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .stat strong {
+        font-size: 24px;
+      }
+
+      .list {
+        margin-top: 20px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .room-item {
+        background: rgba(31, 41, 55, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+
+      .status {
+        min-height: 22px;
+        margin-top: 12px;
+        font-size: 14px;
+        color: var(--success);
+      }
+
+      .error {
+        color: var(--danger);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hostelhub Dashboard</h1>
+
+      <div class="layout">
+        <section class="panel">
+          <h2>Check in resident</h2>
+          <form id="checkin-form">
+            <label>
+              Resident ID
+              <input name="id" placeholder="R-100" required />
+            </label>
+            <label>
+              Name
+              <input name="name" placeholder="Aisha" required />
+            </label>
+            <label>
+              Phone
+              <input name="phone" placeholder="9876543210" />
+            </label>
+            <label>
+              Preferred room type
+              <select name="preferredType">
+                <option value="">Any</option>
+                <option value="single">Single</option>
+                <option value="double">Double</option>
+              </select>
+            </label>
+            <label>
+              Monthly rent
+              <input name="rentPerMonth" type="number" min="0" step="100" placeholder="3500" />
+            </label>
+            <button type="submit">Check In</button>
+          </form>
+
+          <div id="status" class="status"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Room summary</h2>
+          <div class="summary-grid">
+            <div class="stat"><span>Total rooms</span><strong id="totalRooms">0</strong></div>
+            <div class="stat"><span>Occupied</span><strong id="occupiedRooms">0</strong></div>
+            <div class="stat"><span>Available</span><strong id="availableRooms">0</strong></div>
+            <div class="stat"><span>Residents</span><strong id="totalOccupants">0</strong></div>
+            <div class="stat" style="grid-column: 1 / -1;"><span>Monthly revenue</span><strong id="monthlyRevenue">0</strong></div>
+          </div>
+        </section>
+      </div>
+
+      <section class="panel" style="margin-top: 20px;">
+        <h2>Rooms</h2>
+        <div id="rooms" class="list"></div>
+      </section>
+    </div>
+
+    <script>
+      async function loadSummary() {
+        const res = await fetch('/api/summary');
+        const data = await res.json();
+        document.getElementById('totalRooms').textContent = data.totalRooms ?? 0;
+        document.getElementById('occupiedRooms').textContent = data.occupiedRooms ?? 0;
+        document.getElementById('availableRooms').textContent = data.availableRooms ?? 0;
+        document.getElementById('totalOccupants').textContent = data.totalOccupants ?? 0;
+        document.getElementById('monthlyRevenue').textContent = `₹${Number(data.monthlyRevenue ?? 0).toLocaleString('en-IN')}`;
+      }
+
+      async function loadRooms() {
+        const res = await fetch('/api/rooms');
+        const data = await res.json();
+        const rooms = document.getElementById('rooms');
+        rooms.innerHTML = '';
+
+        for (const room of data.rooms ?? []) {
+          const div = document.createElement('div');
+          div.className = 'room-item';
+          div.innerHTML = `
+            <strong>${room.id}</strong> (${room.type})<br />
+            Capacity: ${room.capacity} | Occupancy: ${room.occupancy} | Rent: ₹${room.rentPerMonth.toLocaleString('en-IN')}
+          `;
+          rooms.appendChild(div);
+        }
+      }
+
+      async function refreshData() {
+        await loadSummary();
+        await loadRooms();
+      }
+
+      document.getElementById('checkin-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const data = Object.fromEntries(new FormData(form).entries());
+        const status = document.getElementById('status');
+
+        const payload = {
+          id: data.id,
+          name: data.name,
+          phone: data.phone,
+          preferredType: data.preferredType || null,
+          rentPerMonth: data.rentPerMonth ? Number(data.rentPerMonth) : undefined,
+        };
+
+        try {
+          const res = await fetch('/api/checkin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const result = await res.json();
+
+          if (!res.ok) {
+            status.textContent = result.error || 'Unable to check in resident.';
+            status.classList.add('error');
+            return;
+          }
+
+          status.textContent = `Checked in ${result.resident.name} to room ${result.resident.roomId}.`;
+          status.classList.remove('error');
+          form.reset();
+          await refreshData();
+        } catch (error) {
+          status.textContent = 'Request failed.';
+          status.classList.add('error');
+        }
+      });
+
+      refreshData();
+    </script>
+  </body>
+</html>

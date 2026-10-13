@@ -1,0 +1,22 @@
+/* ===== HOSTELHUB EXTREME v2 (loaded last, wins everywhere) ===== */
+:root{
+--x-indigo:#4f46e5;--x-violet:#7c3aed;--x-fuchsia:#d946ef;--x-cyan:#06b6d4;
+--x-card:rgba(255,255,255,.92);--x-card-border:rgba(129,140,248,.22);
+}
+.main-content{background:radial-gradient(circle at 88% -4%,rgba(124,58,237,.14),transparent 30%),radial-gradient(circle at 8% 12%,rgba(6,182,212,.10),transparent 26%),radial-gradient(circle at 50% 110%,rgba(217,70,239,.08),transparent 30%),var(--bg)}
+[data-theme="dark"] .main-content{background:radial-gradient(circle at 88% -4%,rgba(124,58,237,.22),transparent 32%),radial-gradient(circle at 8% 12%,rgba(6,182,212,.12),transparent 28%),var(--bg)}
+.sidebar{background:linear-gradient(180deg,#1e1b4b 0%,#312e81 45%,#4c1d95 100%)!important;border-right:1px solid rgba(167,139,250,.25);box-shadow:4px 0 32px rgba(76,29,149,.35);padding:22px 14px!important;display:flex;flex-direction:column;z-index:100}
+.sidebar nav{flex:1;overflow-y:auto}
+.sidebar nav::-webkit-scrollbar{width:5px}
+.sidebar nav::-webkit-scrollbar-thumb{background:rgba(167,139,250,.35);border-radius:8px}
+.sidebar-logo{display:flex;align-items:center;gap:12px;padding:6px 8px 20px!important;margin-bottom:10px;border-bottom:1px solid rgba(167,139,250,.22)}
+.sidebar-logo-icon{width:46px;height:46px;min-width:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#818cf8,#c084fc);color:#fff;box-shadow:0 8px 20px rgba(129,140,248,.55),inset 0 1px 0 rgba(255,255,255,.4)}
+.sidebar-logo h2{font-size:19px!important;margin:0!important;padding:0!important;background:linear-gradient(90deg,#fff,#ddd6fe);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-logo span{font-size:10px!important;letter-spacing:1.5px;text-transform:uppercase;color:#c4b5fd!important;font-weight:700;background:rgba(124,58,237,.35);border:1px solid rgba(167,139,250,.4);padding:3px 9px;border-radius:999px;display:inline-block;margin-top:5px}
+.sidebar-menu{border-radius:12px!important;padding:12px 14px!important;color:#c4b5fd!important;font-weight:500;transition:all .2s ease!important;border:1px solid transparent!important}
+.sidebar-menu:hover{background:rgba(129,140,248,.16)!important;color:#fff!important;transform:translateX(4px)}
+.sidebar-menu.active{background:linear-gradient(90deg,#6366f1,#8b5cf6)!important;color:#fff!important;font-weight:700!important;box-shadow:0 8px 22px rgba(139,92,246,.55),inset 0 1px 0 rgba(255,255,255,.3)!important;border-color:rgba(255,255,255,.15)!important}
+.sidebar-menu.active::before{display:none}
+.sidebar-bottom{padding-top:14px;border-top:1px solid rgba(167,139,250,.22)}
+.logout-btn{width:100%;border:1px solid rgba(248,113,113,.4)!important;background:rgba(220,38,38,.14)!important;color:#fca5a5!important;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s ease}
+.logout-btn:hover{background:rgba(220,38,38,.3)!important;color:#fff!important}

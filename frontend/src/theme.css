@@ -1,0 +1,46 @@
+/* HostelHub theme variables + shared modern components */
+
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --border: #e5e7eb;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-faint: #2a5591;
+  --primary: #4f46e5;
+  --primary-soft: #eef2ff;
+  --success: #16a34a;
+  --success-soft: #dcfce7;
+  --warning: #d97706;
+  --warning-soft: #fef3c7;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --info: #0284c7;
+  --info-soft: #e0f2fe;
+  --shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+  --radius: 14px;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-2: #16213a;
+  --border: #334155;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --primary: #818cf8;
+  --primary-soft: rgba(129, 140, 248, 0.14);
+  --success-soft: rgba(22, 163, 74, 0.18);
+  --warning-soft: rgba(217, 119, 6, 0.18);
+  --danger-soft: rgba(220, 38, 38, 0.2);
+  --info-soft: rgba(2, 132, 199, 0.2);
+  --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.25s ease, color 0.25s ease;
+}

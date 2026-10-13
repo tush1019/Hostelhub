@@ -1,0 +1,127 @@
+/* ================= SKELETON / EMPTY / ERROR ================= */
+
+.skeleton-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #eef2f7 25%, #e2e8f0 50%, #eef2f7 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.2s infinite;
+  margin-bottom: 12px;
+}
+
+[data-theme="dark"] .skeleton-line {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes skeleton {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.empty-state { text-align: center; padding: 52px 20px; color: var(--text-muted); }
+.empty-state svg { color: var(--text-faint); margin-bottom: 12px; }
+.empty-state strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 6px; }
+.empty-state p { font-size: 13px; margin-bottom: 16px; }
+
+.error-state {
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 13.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error-state button {
+  align-self: flex-start;
+  border: none;
+  background: var(--danger);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ================= ANIMATIONS ================= */
+
+.stat-card, .room-summary-card, .fee-summary-card,
+.complaint-summary-card, .mess-summary-card, .report-card {
+  animation: card-in 0.35s ease backwards;
+}
+
+.stat-card:nth-child(2), .room-summary-card:nth-child(2),
+.fee-summary-card:nth-child(2), .complaint-summary-card:nth-child(2),
+.mess-summary-card:nth-child(2), .report-card:nth-child(2) { animation-delay: 0.05s; }
+.stat-card:nth-child(3), .room-summary-card:nth-child(3),
+.fee-summary-card:nth-child(3), .complaint-summary-card:nth-child(3),
+.mess-summary-card:nth-child(3), .report-card:nth-child(3) { animation-delay: 0.1s; }
+.stat-card:nth-child(4), .room-summary-card:nth-child(4),
+.fee-summary-card:nth-child(4), .complaint-summary-card:nth-child(4),
+.mess-summary-card:nth-child(4), .report-card:nth-child(4) { animation-delay: 0.15s; }
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.primary-btn, .hero-primary-btn {
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.primary-btn:hover, .hero-primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+  filter: brightness(1.05);
+}
+
+.primary-btn:active, .hero-primary-btn:active { transform: translateY(0); }
+
+/* Row action menu */
+.row-menu { position: relative; }
+
+.row-menu-list {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.14);
+  min-width: 160px;
+  z-index: 50;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.row-menu-list button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 9px 11px;
+  border-radius: 7px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.row-menu-list button:hover { background: var(--surface-2); }
+.row-menu-list button.danger { color: var(--danger); }

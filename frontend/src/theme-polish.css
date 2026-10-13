@@ -1,0 +1,223 @@
+/* =========================================================
+   HOSTELHUB — UI POLISH LAYER
+   Loaded last so these rules cleanly refine the base theme.
+   Focus: logged-in dashboard (sidebar, navbar, stat cards,
+   tables, buttons) + richer, consistent colours.
+   ========================================================= */
+
+/* ================= SIDEBAR MENU ================= */
+/* Base CSS only styled anchors; the menu is <button>, so the
+   active page was never highlighted. Fix + colour it here. */
+
+.sidebar-menu {
+  position: relative;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.sidebar-menu svg { flex-shrink: 0; opacity: 0.9; }
+
+.sidebar-menu:hover {
+  background: #1e293b;
+  color: #fff;
+}
+
+.sidebar-menu.active {
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+}
+
+.sidebar-menu.active:hover {
+  background: linear-gradient(90deg, #4338ca, #4f46e5);
+  color: #fff;
+}
+
+/* Left accent bar on the active item */
+.sidebar-menu.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 22%;
+  height: 56%;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: #a5b4fc;
+}
+
+/* Sidebar logo tint */
+.sidebar-logo h2 { color: #fff; }
+.sidebar-logo span { letter-spacing: 1.4px; text-transform: uppercase; }
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.86);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 14px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="dark"] .navbar {
+  background: rgba(30, 41, 59, 0.86);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* Search box focus glow */
+.search-box { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.search-box:focus-within {
+  border-color: #818cf8;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Profile avatar ring */
+.profile > svg {
+  color: #4f46e5;
+  background: #eef2ff;
+  border-radius: 50%;
+  padding: 3px;
+  box-sizing: content-box;
+}
+[data-theme="dark"] .profile > svg { background: var(--primary-soft); }
+
+/* ================= STAT CARDS + ICON TILES ================= */
+/* .stat-icon had no styles at all — give it a coloured tile. */
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-card > div:last-child { min-width: 0; }
+
+.stat-icon {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  color: #4f46e5;
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.14);
+}
+
+.stat-icon.rooms {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  color: #2563eb;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.16);
+}
+
+.stat-icon.fees {
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  color: #059669;
+  box-shadow: 0 6px 14px rgba(5, 150, 105, 0.16);
+}
+
+.stat-icon.complaints {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  color: #ea580c;
+  box-shadow: 0 6px 14px rgba(234, 88, 12, 0.16);
+}
+
+[data-theme="dark"] .stat-icon,
+[data-theme="dark"] .stat-icon.rooms,
+[data-theme="dark"] .stat-icon.fees,
+[data-theme="dark"] .stat-icon.complaints {
+  box-shadow: none;
+}
+
+/* Summary icon tiles (Students/Rooms/Fees/Complaints/Mess pages) */
+.summary-icon,
+.room-summary-icon,
+.report-icon {
+  box-shadow: 0 5px 12px rgba(79, 70, 229, 0.12);
+}
+
+/* ================= PAGE HEADING ACCENT ================= */
+
+.page-heading h2 {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.page-heading h2::before {
+  content: "";
+  width: 5px;
+  height: 26px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #4f46e5, #818cf8);
+  flex-shrink: 0;
+}
+
+/* ================= PRIMARY BUTTON ================= */
+
+.primary-btn {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.primary-btn:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 10px 22px rgba(79, 70, 229, 0.34);
+  transform: translateY(-1px);
+}
+
+.primary-btn:active { transform: translateY(0); }
+
+/* ================= TABLES ================= */
+/* Uppercase headers + soft gradient header background (light only). */
+
+.rooms-table-card th,
+.fees-table-card th,
+.complaints-table-card th,
+.mess-table-card th,
+.students-table-card th {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 10.5px;
+}
+
+:root:not([data-theme="dark"]) .rooms-table-card th,
+:root:not([data-theme="dark"]) .fees-table-card th,
+:root:not([data-theme="dark"]) .complaints-table-card th,
+:root:not([data-theme="dark"]) .mess-table-card th,
+:root:not([data-theme="dark"]) .students-table-card th {
+  background: linear-gradient(180deg, #f8fafc, #eef2f7);
+}
+
+/* ================= CHART BARS ================= */
+
+.chart-bar {
+  background: linear-gradient(180deg, #818cf8, #4f46e5);
+  border-radius: 7px 7px 0 0;
+}
+
+/* ================= STATUS PILLS ================= */
+
+.status-active,
+.status-pending {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* ================= SOFT SCROLLBAR (content) ================= */
+
+.main-content::-webkit-scrollbar { width: 9px; }
+.main-content::-webkit-scrollbar-thumb {
+  background: #c7d2fe;
+  border-radius: 20px;
+}
+.main-content::-webkit-scrollbar-thumb:hover { background: #818cf8; }

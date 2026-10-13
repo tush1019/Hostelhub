@@ -1,0 +1,32 @@
+/* ===== NAVBAR glass ===== */
+.navbar{background:rgba(255,255,255,.72)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid rgba(129,140,248,.18)!important;box-shadow:0 4px 24px rgba(79,70,229,.07)!important;border-radius:0 0 20px 20px}
+[data-theme="dark"] .navbar{background:rgba(30,27,75,.72)!important;border-bottom-color:rgba(139,92,246,.25)!important}
+.navbar h1{background:linear-gradient(90deg,#4f46e5,#7c3aed);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800!important}
+[data-theme="dark"] .navbar h1{background:linear-gradient(90deg,#a5b4fc,#d8b4fe);-webkit-background-clip:text;background-clip:text}
+.search-box{border-radius:999px!important;background:rgba(238,242,255,.8)!important;border:1px solid rgba(129,140,248,.25)!important}
+.search-box:focus-within{background:#fff!important;border-color:#7c3aed!important;box-shadow:0 0 0 4px rgba(124,58,237,.14)!important}
+.navbar-icon-btn{transition:all .2s ease}
+.navbar-icon-btn:hover{background:linear-gradient(135deg,#eef2ff,#f5f3ff)!important;color:#6d28d9!important;transform:translateY(-2px);box-shadow:0 6px 14px rgba(124,58,237,.18)}
+/* ===== CONTENT ===== */
+.content{padding:28px 30px;animation:x-fade-up .4s ease}
+@keyframes x-fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page-heading{margin-bottom:24px}
+.page-heading h2::before{background:linear-gradient(180deg,#4f46e5,#d946ef)!important;width:6px!important;height:30px!important;box-shadow:0 4px 12px rgba(124,58,237,.4)}
+.admin-heading{background:linear-gradient(120deg,rgba(79,70,229,.10),rgba(217,70,239,.07));border:1px solid rgba(129,140,248,.25);border-radius:20px;padding:20px 24px!important}
+.admin-eyebrow{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:2px;color:#fff;background:linear-gradient(90deg,#4f46e5,#a855f7);padding:5px 13px;border-radius:999px;margin-bottom:10px;box-shadow:0 4px 12px rgba(124,58,237,.4)}
+.admin-heading-badges{display:flex;gap:10px;flex-wrap:wrap}
+.admin-pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:#065f46;background:linear-gradient(135deg,#d1fae5,#a7f3d0);border:1px solid #6ee7b7;padding:8px 15px;border-radius:999px;box-shadow:0 4px 12px rgba(16,185,129,.2)}
+.admin-pill.warn{color:#92400e;background:linear-gradient(135deg,#fef3c7,#fde68a);border-color:#fcd34d;box-shadow:0 4px 12px rgba(245,158,11,.2)}
+/* ===== STAT CARDS gradient ===== */
+.admin-stats .stat-card{border:none!important;border-radius:20px!important;padding:24px!important;color:#fff;position:relative;overflow:hidden!important;box-shadow:0 14px 34px rgba(15,23,42,.18)!important;transition:transform .22s ease,box-shadow .22s ease!important}
+.admin-stats .stat-card:hover{transform:translateY(-5px) scale(1.015)!important;box-shadow:0 22px 48px rgba(15,23,42,.28)!important}
+.admin-stats .stat-card::before{content:"";position:absolute;right:-46px;top:-46px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.14)}
+.admin-stats .stat-card::after{content:"";position:absolute;right:22px;bottom:-58px;width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.10)}
+.stat-tint-indigo{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 60%,#a855f7 100%)!important}
+.stat-tint-blue{background:linear-gradient(135deg,#0ea5e9 0%,#3b82f6 60%,#6366f1 100%)!important}
+.stat-tint-green{background:linear-gradient(135deg,#10b981 0%,#059669 60%,#0d9488 100%)!important}
+.stat-tint-orange{background:linear-gradient(135deg,#f59e0b 0%,#f97316 60%,#ef4444 100%)!important}
+.admin-stats .stat-icon{background:rgba(255,255,255,.22)!important;color:#fff!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)!important}
+.admin-stats .stat-body span{color:rgba(255,255,255,.85)!important;font-weight:600}
+.admin-stats .stat-body h3{color:#fff!important;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.admin-stats .stat-body p{color:rgba(255,255,255,.85)!important;display:flex;align-items:center;gap:5px}

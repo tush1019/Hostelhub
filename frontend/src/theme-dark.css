@@ -1,0 +1,85 @@
+/* Surface overrides so dark mode applies to existing classes */
+[data-theme="dark"] .navbar,
+[data-theme="dark"] .dashboard-card,
+[data-theme="dark"] .students-table-card,
+[data-theme="dark"] .rooms-table-card,
+[data-theme="dark"] .fees-table-card,
+[data-theme="dark"] .complaints-table-card,
+[data-theme="dark"] .mess-table-card,
+[data-theme="dark"] .report-chart-card,
+[data-theme="dark"] .report-card,
+[data-theme="dark"] .report-bottom-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .student-summary,
+[data-theme="dark"] .room-summary-card,
+[data-theme="dark"] .fee-summary-card,
+[data-theme="dark"] .complaint-summary-card,
+[data-theme="dark"] .mess-summary-card,
+[data-theme="dark"] .settings-card,
+[data-theme="dark"] .login-card,
+[data-theme="dark"] .signup-card,
+[data-theme="dark"] .notice-card,
+[data-theme="dark"] .notice-form-card,
+[data-theme="dark"] .about-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .hero-dashboard {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="dark"] .page-heading h2,
+[data-theme="dark"] .table-header h3,
+[data-theme="dark"] .dashboard-card h3,
+[data-theme="dark"] .settings-card-title h3,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] strong {
+  color: var(--text);
+}
+
+[data-theme="dark"] .page-heading p,
+[data-theme="dark"] .table-header p,
+[data-theme="dark"] p,
+[data-theme="dark"] .profile small,
+[data-theme="dark"] td {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .navbar h1 { color: var(--text); }
+[data-theme="dark"] .navbar p { color: var(--text-muted); }
+
+[data-theme="dark"] table thead th {
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border-bottom-color: var(--border);
+}
+
+[data-theme="dark"] table tbody td { border-bottom-color: var(--border); }
+[data-theme="dark"] table tbody tr:hover { background: var(--surface-2); }
+
+[data-theme="dark"] .search-box,
+[data-theme="dark"] .student-search,
+[data-theme="dark"] .room-search,
+[data-theme="dark"] .fee-search,
+[data-theme="dark"] .complaint-search,
+[data-theme="dark"] .mess-search,
+[data-theme="dark"] .notification {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="dark"] .modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}

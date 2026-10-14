@@ -43,8 +43,8 @@ app.use(
   })
 );
 
-// Home
-app.get("/", (req, res) => {
+/* Health check for quick verification */
+app.get("/api/health", (req, res) => {
   res.json({
     success: true,
     message: "HostelHub Backend is running 🚀",
@@ -105,6 +105,19 @@ app.use("/api/dashboard", dashboardRoutes);
 // 404 for unknown API routes
 app.use("/api", (req, res) => {
   res.status(404).json({ success: false, message: "API route not found" });
+});
+
+/* Serve the built frontend (frontend/dist) — one service hosts the whole app */
+const path = require("path");
+const FRONTEND_DIST = path.join(__dirname, "frontend", "dist");
+app.use(express.static(FRONTEND_DIST));
+
+/* SPA fallback: any other GET returns the frontend index.html */
+app.use((req, res, next) => {
+  if (req.method === "GET" && !req.path.startsWith("/api")) {
+    return res.sendFile(path.join(FRONTEND_DIST, "index.html"));
+  }
+  next();
 });
 
 // Central error handler (malformed JSON etc.)
